@@ -32,3 +32,12 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+
+# NuGet packages
+*.nupkg
+.nuget/
+packages/
+
+# Docker artifacts
+*.tar
+*.gz
