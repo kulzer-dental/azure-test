@@ -1,5 +1,9 @@
 name: Docker Image CI
 
+permissions:
+  packages: write
+  contents: read
+
 on:
   push:
     branches: [ "main" ]
@@ -23,4 +27,3 @@ jobs:
       run: docker push ghcr.io/kulzer-dental/kdc-experimental-image:latest
     - name: Push Docker image
       run: docker push ghcr.io/kulzer-dental/kdc-experimental-image:$(date +%s)
-
