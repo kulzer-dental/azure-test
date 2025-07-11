@@ -23,7 +23,9 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ghcr.io/kulzer-dental/kdc-experimental-image:latest
-    - name: Push Docker image
+    - name: Push Docker image (latest)
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: docker push ghcr.io/kulzer-dental/kdc-experimental-image:latest
-    - name: Push Docker image
+    - name: Push Docker image (timestamp)
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: docker push ghcr.io/kulzer-dental/kdc-experimental-image:$(date +%s)
