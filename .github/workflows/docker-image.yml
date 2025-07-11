@@ -11,6 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ghcr.io/kulzer-dental/kdc-experimental-image:latest
-    # run: docker build . --file Dockerfile --tag ghcr.io/kulzer-dental/kdc-experimental-image:$(date +%s)
+    - name: Push Docker image
+      run: docker push ghcr.io/kulzer-dental/kdc-experimental-image:latest
+    - name: Push Docker image
+      run: docker push ghcr.io/kulzer-dental/kdc-experimental-image:$(date +%s)
+
