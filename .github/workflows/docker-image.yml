@@ -39,3 +39,10 @@ jobs:
     - name: Push Docker image (timestamp)
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: docker push ghcr.io/kulzer-dental/kdc-experimental-image:${{ steps.vars.outputs.timestamp }}
+
+    - name: Azure WebApp Container Deploy
+      uses: azure/webapps-deploy@v3
+      with:
+        app-name: 'kdc-test'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        images: 'ghcr.io/kulzer-dental/kdc-experimental-image:latest'
