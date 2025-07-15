@@ -21,11 +21,21 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Set timestamp
+      id: vars
+      run: echo "timestamp=$(date +%s)" >> $GITHUB_OUTPUT
+
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/kulzer-dental/kdc-experimental-image #:latest
+      run: |
+        docker build . --file Dockerfile \
+          --tag ghcr.io/kulzer-dental/kdc-experimental-image:latest \
+          --tag ghcr.io/kulzer-dental/kdc-experimental-image:${{ steps.vars.outputs.timestamp }}
+
     - name: Push Docker image (latest)
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: docker push ghcr.io/kulzer-dental/kdc-experimental-image:latest
+
     - name: Push Docker image (timestamp)
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      run: docker push ghcr.io/kulzer-dental/kdc-experimental-image:$(date +%s)
+      run: docker push ghcr.io/kulzer-dental/kdc-experimental-image:${{ steps.vars.outputs.timestamp }}
