@@ -16,8 +16,21 @@ permissions:
   contents: read
 
 jobs:
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      runner: ${{ steps.pick.outputs.runner }}
+    steps:
+      - id: pick
+        uses: jimmygchen/runner-fallback-action@v1
+        with:
+          primary-runner: "self-hosted"
+          fallback-runner: "ubuntu-latest"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
   build: # Build and push Docker image to GitHub Container Registry
-    runs-on: [self-hosted, ubuntu-latest]
+    needs: detect
+    runs-on: ${{ fromJson(needs.detect.outputs.runner) }}
     permissions:
      packages: write # Set here: https://github.com/[organization]/[repository]/settings/actions
      contents: read #This is required for actions/checkout
@@ -71,9 +84,8 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache
 
   deploy: # Deploy the Docker image to Azure Web App
-    runs-on: [self-hosted, ubuntu-latest]
-
     needs: build
+    runs-on: ${{ fromJson(needs.detect.outputs.runner) }}
 
     steps:
       - name: Deploy to Azure Web App
