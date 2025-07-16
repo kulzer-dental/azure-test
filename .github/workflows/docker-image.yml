@@ -18,6 +18,9 @@ permissions:
 jobs:
   detect:
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
     outputs:
       runner: ${{ steps.pick.outputs.runner }}
     steps:
