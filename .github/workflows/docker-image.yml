@@ -29,11 +29,16 @@ jobs:
         with:
           primary-runner: "self-hosted"
           fallback-runner: "ubuntu-latest"
-          github-token: ${{ secrets.LOCAL_RUNNER_FALLBACK_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      # Debug output to verify runner value from action
+      - name: Debug runner output
+        run: |
+          echo "Runner output: ${{ steps.pick.outputs.runner }}"
+        # If this is empty, the action did not set the output correctly
 
   build: # Build and push Docker image to GitHub Container Registry
     needs: detect
-    runs-on: ${{ fromJson(needs.detect.outputs.runner) }}
+    runs-on: ${{ fromJson(needs.detect.outputs.runner || '"ubuntu-latest"') }}
     permissions:
      packages: write # Set here: https://github.com/[organization]/[repository]/settings/actions
      contents: read #This is required for actions/checkout
@@ -88,7 +93,7 @@ jobs:
 
   deploy: # Deploy the Docker image to Azure Web App
     needs: build
-    runs-on: ${{ fromJson(needs.detect.outputs.runner) }}
+    runs-on: ${{ fromJson(needs.detect.outputs.runner || '"ubuntu-latest"') }}
 
     steps:
       - name: Deploy to Azure Web App
