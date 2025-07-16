@@ -19,11 +19,11 @@ jobs:
   detect:
     runs-on: ubuntu-latest
     permissions:
-     actions: write
-     contents: read
-     packages: write
+      actions: write
+      contents: read
+      packages: write
     outputs:
-      runner: ${{ steps.pick.outputs.runner }}
+      runner: ${{ steps.pick.outputs.use-runner }}
     steps:
       - id: pick
         uses: kulzer-dental/runner-fallback-action@main
@@ -34,7 +34,7 @@ jobs:
       # Debug output to verify runner value from action
       - name: Debug runner output
         run: |
-          echo "Runner output: ${{ steps.pick.outputs.runner }}"
+          echo "Runner output: ${{ steps.pick.outputs.use-runner }}"
         # If this is empty, the action did not set the output correctly
 
   build: # Build and push Docker image to GitHub Container Registry
