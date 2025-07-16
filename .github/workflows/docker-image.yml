@@ -17,6 +17,7 @@ permissions:
 
 jobs:
   detect:
+    name: "Detect local or cloud runner"
     runs-on: ubuntu-latest
     permissions: write-all
     outputs:
