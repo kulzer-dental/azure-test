@@ -27,7 +27,7 @@ jobs:
         with:
           primary-runner: "self-hosted"
           fallback-runner: "ubuntu-latest"
-          github-token: ${{ secrets.GITHUB_TOKEN }} # LOCAL_RUNNER_FALLBACK_TOKEN
+          github-token: ${{ secrets.LOCAL_RUNNER_FALLBACK_TOKEN }} # DO NOT USE GITHUB_TOKEN! NEEDS A PAT
       # Debug output to verify runner value from action
       - name: Debug runner output
         run: |
