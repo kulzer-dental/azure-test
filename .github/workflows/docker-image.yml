@@ -18,10 +18,7 @@ permissions:
 jobs:
   detect:
     runs-on: ubuntu-latest
-    permissions:
-      actions: write
-      contents: read
-      packages: write
+    permissions: write-all
     outputs:
       runner: ${{ steps.pick.outputs.use-runner }}
     steps:
@@ -30,7 +27,7 @@ jobs:
         with:
           primary-runner: "self-hosted"
           fallback-runner: "ubuntu-latest"
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }} # LOCAL_RUNNER_FALLBACK_TOKEN
       # Debug output to verify runner value from action
       - name: Debug runner output
         run: |
