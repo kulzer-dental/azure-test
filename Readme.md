@@ -19,4 +19,4 @@ This project is a template example for building a Dotnet web app as a Docker ima
 - [x] Document how to run a docker build and execute locally for test ([see details](Docs/dockerBuildAndLocalTest.md))
 - [x] Provide documentation on [GitHub Packages and Actions configuration](Docs/githubPackagesAndActionsConfig.md)
 - [ ] Provide Azure configuration to allow Docker and CI/CD from this approach ([see details](Docs/azureConfigurationForDockerAndCicd.md))
-- [ ] Add documentation on how to set up a local GitHub Actions runner (can be hosted anywhere like on azure or developer machine) ([see details](Docs/localGithubRunnerSetup.md))
+- [x] Add documentation on how to set up a local GitHub Actions runner (can be hosted anywhere like on azure or developer machine) ([see details](Docs/localGithubRunnerSetup.md))
