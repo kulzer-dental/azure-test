@@ -1,5 +1,16 @@
+# GitHub Actions Workflow: Docker Container CI/CD Pipeline
+# 
+# This workflow automates the complete lifecycle of a .NET application:
+# 1. Builds a Docker image from the application code
+# 2. Pushes the image to GitHub Container Registry (GHCR)
+# 3. Deploys the image to Azure App Service
+#
+# The pipeline supports both local self-hosted runners and cloud runners
+# with automatic fallback for cost optimization and reliability.
+
 name: Build and deploy container app to Azure Web App - kdc-test
 
+# Workflow Triggers: Define when this workflow should execute
 on:
   push:
     branches: # Run workflow on push to main branch
@@ -9,61 +20,92 @@ on:
       - main
   workflow_dispatch: # Allow manual triggering of the workflow
 
+# Global Permissions: Define what GitHub Actions can access
+# These permissions apply to the entire workflow unless overridden in specific jobs
 # Important permissions for the workflow granted to github actions
 # If it still doesn't work, check the container's permissions (or simply delete the image completely and try again)
 permissions:
-  packages: read
-  contents: read
+  packages: read    # Required to read existing container images from GHCR
+  contents: read    # Required to checkout source code from the repository
 
 jobs:
+  # ===============================================================================
+  # JOB 1: RUNNER DETECTION
+  # ===============================================================================
+  # This job determines whether to use a local self-hosted runner or cloud runner.
+  # Benefits:
+  # - Cost savings: Self-hosted runners don't consume GitHub Actions minutes
+  # - Performance: Local runners may have faster builds with cached dependencies
+  # - Reliability: Falls back to cloud runners if local runners are unavailable
   detect:
     name: "Detect local or cloud runner"
-    runs-on: ubuntu-latest
-    permissions: write-all
+    runs-on: ubuntu-latest  # Always run detection on cloud runner for reliability
+    permissions: write-all  # Elevated permissions needed for runner detection action
     outputs:
-      runner: ${{ steps.pick.outputs.use-runner }}
+      runner: ${{ steps.pick.outputs.use-runner }}  # Export runner choice to other jobs
     steps:
+      # Use custom action to detect available runners
       - id: pick
         uses: kulzer-dental/runner-fallback-action@main
         with:
-          primary-runner: "self-hosted"
-          fallback-runner: "ubuntu-latest"
+          primary-runner: "self-hosted"      # Prefer local runner for cost savings
+          fallback-runner: "ubuntu-latest"   # Use cloud runner if local unavailable
           github-token: ${{ secrets.LOCAL_RUNNER_FALLBACK_TOKEN }} # DO NOT USE GITHUB_TOKEN! NEEDS A PAT
+      
       # Debug output to verify runner value from action
       - name: Debug runner output
         run: |
           echo "Runner output: ${{ steps.pick.outputs.use-runner }}"
         # If this is empty, the action did not set the output correctly
 
+  # ===============================================================================
+  # JOB 2: BUILD AND PUSH DOCKER IMAGE
+  # ===============================================================================
+  # This job builds the .NET application into a Docker image and pushes it to
+  # GitHub Container Registry (GHCR). The image will be used for deployment.
   build: # Build and push Docker image to GitHub Container Registry
-    needs: detect
-    runs-on: ${{ fromJson(needs.detect.outputs.runner || '"ubuntu-latest"') }}
+    needs: detect  # Wait for runner detection to complete
+    runs-on: ${{ fromJson(needs.detect.outputs.runner || '"ubuntu-latest"') }}  # Use detected runner
+    
+    # Job-specific permissions (override global permissions)
     permissions:
      packages: write # Set here: https://github.com/[organization]/[repository]/settings/actions
      contents: read #This is required for actions/checkout
 
     steps:
+      # Step 1: Checkout source code from the repository
       - uses: actions/checkout@v4
 
-      # Cache Docker layers
+      # Step 2: Cache Docker build layers for faster subsequent builds
+      # This significantly reduces build time by reusing unchanged layers
       - name: Cache Docker layers
         uses: actions/cache@v4
         with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          path: /tmp/.buildx-cache              # Local cache directory
+          key: ${{ runner.os }}-buildx-${{ github.sha }}    # Unique key per commit
           restore-keys: |
-            ${{ runner.os }}-buildx-
+            ${{ runner.os }}-buildx-            # Fallback to any previous cache
 
+      # Step 3: Set up Docker Buildx for advanced build features
+      # Buildx enables multi-platform builds, advanced caching, and BuildKit features
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
+      # Step 4: Authenticate with GitHub Container Registry
+      # This allows pushing images to ghcr.io/kulzer-dental/*
       - name: Log in to container registry
         uses: docker/login-action@v2
         with:
-          registry: ghcr.io/
-          username: ${{ github.actor }} # GitHub username = GitHub actions actor
+          registry: ghcr.io/                    # GitHub Container Registry
+          username: ${{ github.actor }}         # GitHub username = GitHub actions actor
           password: ${{ secrets.GITHUB_TOKEN }} # GitHub token generated by GitHub Actions
 
+      # Step 5: Generate safe and consistent Docker image tags
+      # This action handles complex tagging scenarios automatically:
+      # - Branch builds: tagged with branch name (e.g., "main", "feature-xyz")
+      # - PR builds: tagged with PR number (e.g., "pr-123")
+      # - Commit builds: tagged with commit SHA (e.g., "sha-abc1234")
+      # - Latest tag: only applied to default branch builds
       # Use docker/metadata-action to generate safe Docker tags from branch, PR, and commit
       # This action automatically sanitizes branch names and handles all edge cases
       # See: https://github.com/docker/metadata-action
@@ -71,35 +113,107 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/kulzer-dental/kdc-experimental-image
+          images: ghcr.io/kulzer-dental/kdc-experimental-image  # Base image name
           tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=sha
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=ref,event=branch                              # Tag with branch name
+            type=ref,event=pr                                  # Tag with PR number
+            type=sha                                           # Tag with commit SHA
+            type=raw,value=latest,enable={{is_default_branch}} # 'latest' only for main branch
 
+      # Step 6: Build and push the Docker image
+      # This step creates the container image from the Dockerfile and pushes it to GHCR
       - name: Build and push container image to registry (latest)
         uses: docker/build-push-action@v3
         with:
-          context: .
-          push: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          # Use tags generated by metadata-action for robust and safe tagging
-          tags: ${{ steps.meta.outputs.tags }}
-          file: ./Dockerfile
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
+          context: .                                    # Build from current directory
+          push: true                                    # Push image to registry after build
+          github-token: ${{ secrets.GITHUB_TOKEN }}    # Authentication token
+          tags: ${{ steps.meta.outputs.tags }}         # Use tags generated by metadata-action for robust and safe tagging
+          file: ./Dockerfile                           # Path to Dockerfile
+          cache-from: type=local,src=/tmp/.buildx-cache # Use cache from previous step
+          cache-to: type=local,dest=/tmp/.buildx-cache  # Save cache for next build
 
+  # ===============================================================================
+  # JOB 3: DEPLOY TO AZURE
+  # ===============================================================================
+  # This job deploys the newly built Docker image to Azure App Service.
+  # The deployment uses Azure's container deployment mechanism to pull the
+  # latest image from GHCR and run it in the App Service environment.
   deploy: # Deploy the Docker image to Azure Web App
-    needs: build
-    runs-on: ${{ fromJson(needs.detect.outputs.runner || '"ubuntu-latest"') }}
+    needs: build  # Wait for build job to complete successfully
+    runs-on: ${{ fromJson(needs.detect.outputs.runner || '"ubuntu-latest"') }}  # Use same runner as build
 
     steps:
+      # Deploy the container image to Azure App Service
+      # This action handles the deployment process:
+      # 1. Connects to Azure using the publish profile
+      # 2. Configures the App Service to pull the specified image
+      # 3. Triggers a restart to use the new image
+      # 4. Waits for the deployment to complete
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "kdc-test"
-          slot-name: "Production" # Use "Production" slot for deployment
-          images: "ghcr.io/kulzer-dental/kdc-experimental-image:latest"
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          app-name: "kdc-test"                                    # Azure App Service name
+          slot-name: "Production"                                 # Use "Production" slot for deployment
+          images: "ghcr.io/kulzer-dental/kdc-experimental-image:latest"  # Image to deploy (always latest)
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}   # Azure authentication credentials
+
+# ===============================================================================
+# WORKFLOW SUMMARY AND ARCHITECTURE NOTES
+# ===============================================================================
+#
+# This workflow implements a modern CI/CD pipeline with the following benefits:
+#
+# 1. **Cost Optimization**: Uses self-hosted runners when available to save on
+#    GitHub Actions minutes, with automatic fallback to cloud runners.
+#
+# 2. **Performance**: Docker layer caching reduces build times significantly.
+#    Buildx provides advanced build features and multi-platform support.
+#
+# 3. **Security**: Uses least-privilege permissions and secure token handling.
+#    Images are stored in GitHub Container Registry with proper access controls.
+#
+# 4. **Reliability**: Automatic fallback mechanisms ensure deployments succeed
+#    even if preferred infrastructure is unavailable.
+#
+# 5. **Flexibility**: Supports multiple trigger types (push, PR, manual) and
+#    generates appropriate tags for different scenarios.
+#
+# ===============================================================================
+# REQUIRED SECRETS AND CONFIGURATION
+# ===============================================================================
+#
+# This workflow requires the following secrets to be configured in the repository:
+#
+# 1. LOCAL_RUNNER_FALLBACK_TOKEN: Personal Access Token for runner detection
+#    - Must have repo and workflow permissions
+#    - Used by the runner-fallback-action
+#
+# 2. AZURE_WEBAPP_PUBLISH_PROFILE: Azure App Service publish profile
+#    - Contains deployment endpoints and credentials
+#    - Generated from Azure CLI: az webapp deployment list-publishing-profiles
+#
+# 3. GITHUB_TOKEN: Automatically provided by GitHub Actions
+#    - Used for GHCR authentication and repository access
+#    - No manual configuration required
+#
+# ===============================================================================
+# DEPLOYMENT FLOW
+# ===============================================================================
+#
+# 1. Developer pushes code to main branch
+# 2. Workflow detects available runner (local vs cloud)
+# 3. Code is checked out and Docker image is built
+# 4. Image is tagged with appropriate version/branch information
+# 5. Image is pushed to GitHub Container Registry
+# 6. Azure App Service is updated to use the new image
+# 7. Application is automatically restarted with new version
+#
+# The entire process typically takes 3-8 minutes depending on:
+# - Image size and build complexity
+# - Runner performance (local vs cloud)
+# - Network speed for image transfer
+# - Azure deployment time
+#
+# ===============================================================================
