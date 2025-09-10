@@ -4,21 +4,26 @@ WORKDIR /app
 
 # Install Node.js for CSS build process
 RUN apt-get update && apt-get install -y curl && \
-    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
-# Copy package.json and install npm dependencies if they exist
+# Copy root package.json and install npm dependencies (skip postinstall for now)
 COPY package*.json ./
-RUN npm install || true
+RUN npm install --ignore-scripts
 
 # Copy csproj and restore as distinct layers
-COPY src/KDC.Main/KDC.Main.csproj ./  
-RUN dotnet restore
+COPY src/KDC.Main/KDC.Main.csproj ./src/KDC.Main/
+RUN dotnet restore ./src/KDC.Main/KDC.Main.csproj
 
 # Copy all source files from the KDC.Main directory
-COPY src/KDC.Main/ ./
+COPY src/KDC.Main/ ./src/KDC.Main/
 
-RUN dotnet publish KDC.Main.csproj -c Debug -o out
+# Run the gulp copy task now that gulpfile is available
+RUN npx gulp -f src/KDC.Main/gulpfile.js copy
+
+# Change to the project directory and build
+WORKDIR /app/src/KDC.Main
+RUN dotnet publish KDC.Main.csproj -c Debug -o /app/out
 
 # Use the official .NET 8 ASP.NET runtime image for runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
