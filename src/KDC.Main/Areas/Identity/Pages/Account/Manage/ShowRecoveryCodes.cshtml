@@ -1,0 +1,26 @@
+﻿@page
+@model ShowRecoveryCodesModel
+@{
+    ViewData["Title"] = AuthenticationLocalizer["Recovery codes"];
+}
+
+<h1 class="headline-1">@ViewData["Title"]</h1>
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div class="mt-4" role="alert">
+    <p>
+        <strong>@AuthenticationLocalizer["Put these codes in a safe place."]</strong>
+    </p>
+    <p>
+        @AuthenticationLocalizer["If you lose your device and don't have the recovery codes you will lose access to your account. Each code is valid only once, but you can always generate a new set."]
+    </p>
+</div>
+<div class="my-8">
+    @for (var row = 0; row < Model.RecoveryCodes.Length; row += 2)
+    {
+        <code class="recovery-code">@Model.RecoveryCodes[row]</code><text><br />
+        </text><code class="recovery-code">@Model.RecoveryCodes[row + 1]</code><br />
+    }
+</div>
+
+<a asp-page="./TwoFactorAuthentication" class="btn-flat--primary">@AuthenticationLocalizer["Back to Two Factor Authentication"]</a>

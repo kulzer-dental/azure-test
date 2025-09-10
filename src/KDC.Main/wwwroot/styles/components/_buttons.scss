@@ -1,0 +1,100 @@
+@tailwind components;
+
+@layer components {
+  .btn-icon {
+    
+    @apply text-grey-600 
+        hover:text-primary-600
+        focus:ring-4 
+        focus:outline-none
+        font-medium 
+        rounded-full 
+        text-sm 
+        p-2.5 
+        text-center 
+        inline-flex 
+        items-center
+        hover:transition-all
+        ease-in-out
+        dark:text-grey-200
+  }
+
+  .btn-icon--primary {
+    @apply btn-icon
+    hover:text-primary-700
+    text-primary-600
+    dark:text-primary-500
+    dark:hover:text-primary-600
+  }
+
+  a.btn-flat, a.btn-flat--primary, a.btn-flat--danger {
+    @apply py-3
+  }
+
+  .btn-flat {
+    @apply 
+    text-white
+    bg-grey-600
+    hover:bg-grey-400 
+    focus:ring-4 
+    focus:ring-grey-300 
+    font-medium 
+    rounded-full 
+    text-sm 
+    px-4 
+    lg:px-5 
+    py-2 
+    lg:py-2.5 
+    mr-2 
+    focus:outline-none
+    hover:transition-all
+    ease-in-out
+  }
+
+  .btn-flat--primary {
+    @apply btn-flat
+    text-white
+    bg-primary-600
+    hover:bg-primary-700 
+    focus:ring-primary-300 
+  }
+
+  .btn-flat--danger {
+    @apply btn-flat
+    text-white
+    bg-red-600
+    hover:bg-red-700 
+    focus:ring-red-300 
+  }
+
+  .btn-text {
+    @apply text-gray-800
+     dark:text-white 
+     hover:bg-gray-200
+     hover:text-primary-700
+     focus:ring-4 
+     focus:ring-gray-300 
+     font-medium 
+     rounded-full 
+     text-sm 
+     px-4
+     lg:px-5 
+     py-2 
+     lg:py-2.5 
+     mr-2 
+     dark:hover:bg-gray-700 
+     dark:hover:text-primary-500 
+     dark:focus:ring-gray-800
+     focus:outline-none 
+     hover:transition-all
+     ease-in-out
+  }
+
+  .btn-text--primary {
+    @apply btn-text
+    text-primary-600
+    hover:text-primary-700
+    dark:text-primary-500
+    dark:hover:text-primary-500
+  }
+}

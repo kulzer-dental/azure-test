@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Resend email confirmation" xml:space="preserve">
+    <value>E-mailbevestiging opnieuw verzenden</value>
+  </data>
+  <data name="Verification email sent. Please check your email." xml:space="preserve">
+    <value>Verificatie-e-mail verzonden. Controleer uw e-mail.</value>
+  </data>
+  <data name="Back to Sign in" xml:space="preserve">
+    <value>Terug naar inloggen</value>
+  </data>
+  <data name="Confirm email" xml:space="preserve">
+    <value>E-mail bevestigen</value>
+  </data>
+  <data name="Confirm your email" xml:space="preserve">
+    <value>Bevestig uw e-mail</value>
+  </data>
+  <data name="Error confirming your email." xml:space="preserve">
+    <value>Fout bij het bevestigen van uw e-mail.</value>
+  </data>
+  <data name="Confirm email change" xml:space="preserve">
+    <value>E-mailwijziging bevestigen</value>
+  </data>
+  <data name="Error changing email." xml:space="preserve">
+    <value>Fout bij het wijzigen van e-mail.</value>
+  </data>
+  <data name="Error changing user name." xml:space="preserve">
+    <value>Fout bij het wijzigen van gebruikersnaam.</value>
+  </data>
+  <data name="Thank you for confirming your email change." xml:space="preserve">
+    <value>Bedankt voor het bevestigen van uw e-mailwijziging.</value>
+  </data>
+  <data name="Change Email" xml:space="preserve">
+    <value>E-mail wijzigen</value>
+  </data>
+  <data name="Please enter your new email." xml:space="preserve">
+    <value>Voer uw nieuwe e-mail in.</value>
+  </data>
+  <data name="Send verification email" xml:space="preserve">
+    <value>Verificatie-e-mail verzenden</value>
+  </data>
+  <data name="Your current email" xml:space="preserve">
+    <value>Uw huidige e-mail</value>
+  </data>
+  <data name="Confirmation link to change email sent. Please check your email." xml:space="preserve">
+    <value>Bevestigingslink voor e-mailwijziging verzonden. Controleer uw e-mail.</value>
+  </data>
+  <data name="Your email is unchanged." xml:space="preserve">
+    <value>Uw e-mail is ongewijzigd.</value>
+  </data>
+  <data name="New email" xml:space="preserve">
+    <value>Nieuwe e-mail</value>
+  </data>
+  <data name="Your new email is required." xml:space="preserve">
+    <value>Uw nieuwe e-mail is verplicht.</value>
+  </data>
+  <data name="Please check your email to confirm your account." xml:space="preserve">
+    <value>Controleer uw e-mail om uw account te bevestigen.</value>
+  </data>
+  <data name="Two-factor authentication" xml:space="preserve">
+    <value>Tweefactorauthenticatie</value>
+  </data>
+  <data name="Two-factor authentication (2FA)" xml:space="preserve">
+    <value>Tweefactorauthenticatie (2FA)</value>
+  </data>
+  <data name="Enable 2-factor authentication" xml:space="preserve">
+    <value>Tweefactorauthenticatie inschakelen</value>
+  </data>
+  <data name="Disable two-factor authentication (2FA)" xml:space="preserve">
+    <value>Tweefactorauthenticatie (2FA) uitschakelen</value>
+  </data>
+  <data name="By confirming to disable 2-factor authentication, you will no longer be prompted to enter your 2-factor code at sign in. Doing so makes your account more vulnerable for phishing attacks." xml:space="preserve">
+    <value>Door te bevestigen dat u tweefactorauthenticatie uitschakelt, wordt u niet langer gevraagd uw 2-factor code in te voeren bij het inloggen. Dit maakt uw account kwetsbaarder voor phishing-aanvallen.</value>
+  </data>
+  <data name="No, keep activated" xml:space="preserve">
+    <value>Nee, ingeschakeld houden</value>
+  </data>
+  <data name="Yes, disable 2FA" xml:space="preserve">
+    <value>Ja, 2FA uitschakelen</value>
+  </data>
+  <data name="2fa has been disabled. You can reenable 2fa when you setup an authenticator app." xml:space="preserve">
+    <value>2FA is uitgeschakeld. U kunt 2FA opnieuw inschakelen wanneer u een authenticator-app instelt.</value>
+  </data>
+  <data name="2-Factor authentication has been enabled." xml:space="preserve">
+    <value>Tweefactorauthenticatie is ingeschakeld.</value>
+  </data>
+  <data name="Configure authenticator app" xml:space="preserve">
+    <value>Authenticator-app configureren</value>
+  </data>
+  <data name="To use an authenticator app go through the following steps:" xml:space="preserve">
+    <value>Om een authenticator-app te gebruiken, volgt u deze stappen:</value>
+  </data>
+  <data name="Download a two-factor authenticator app to your phone." xml:space="preserve">
+    <value>Download een tweefactor authenticator-app op uw telefoon.</value>
+  </data>
+  <data name="Scan the QR Code into your authenticator app" xml:space="preserve">
+    <value>Scan de QR-code in uw authenticator-app</value>
+  </data>
+  <data name="Or enter this key:" xml:space="preserve">
+    <value>Of voer deze sleutel in:</value>
+  </data>
+  <data name="Verify the code" xml:space="preserve">
+    <value>Code verifiëren</value>
+  </data>
+  <data name="Once you have scanned the QR code or input the key above, your two factor authentication app will provide you with a unique code. Enter the code in the confirmation box below." xml:space="preserve">
+    <value>Nadat u de QR-code hebt gescand of de bovenstaande sleutel hebt ingevoerd, geeft uw tweefactorauthenticatie-app u een unieke code. Voer de code in het bevestigingsvak hieronder in.</value>
+  </data>
+  <data name="Verify code" xml:space="preserve">
+    <value>Code verifiëren</value>
+  </data>
+  <data name="Your authenticator app has been verified." xml:space="preserve">
+    <value>Uw authenticator-app is geverifieerd.</value>
+  </data>
+  <data name="The verification code is required." xml:space="preserve">
+    <value>De verificatiecode is verplicht.</value>
+  </data>
+  <data name="The code must be at least {2} and at max {1} characters long." xml:space="preserve">
+    <value>De code moet minimaal {2} en maximaal {1} tekens lang zijn.</value>
+  </data>
+  <data name="Verification Code" xml:space="preserve">
+    <value>Verificatiecode</value>
+  </data>
+  <data name="Authenticator app" xml:space="preserve">
+    <value>Authenticator-app</value>
+  </data>
+  <data name="Authenticator apps are available for free on Apple and Android phones. You don't need a data plan or access to your emails for using it." xml:space="preserve">
+    <value>Authenticator-apps zijn gratis beschikbaar op Apple- en Android-telefoons. U hebt geen dataplan of toegang tot uw e-mails nodig om het te gebruiken.</value>
+  </data>
+  <data name="Add authenticator app" xml:space="preserve">
+    <value>Authenticator-app toevoegen</value>
+  </data>
+  <data name="Remove authenticator app" xml:space="preserve">
+    <value>Authenticator-app verwijderen</value>
+  </data>
+  <data name="If you remove your authenticator app you will not be able to sign in with it anymore." xml:space="preserve">
+    <value>Als u uw authenticator-app verwijdert, kunt u er niet meer mee inloggen.</value>
+  </data>
+  <data name="After removal, you can add a new app." xml:space="preserve">
+    <value>Na verwijdering kunt u een nieuwe app toevoegen.</value>
+  </data>
+  <data name="Your authenticator app has been removed." xml:space="preserve">
+    <value>Uw authenticator-app is verwijderd.</value>
+  </data>
+  <data name="Enable 2FA" xml:space="preserve">
+    <value>2FA inschakelen</value>
+  </data>
+  <data name="Disable 2FA" xml:space="preserve">
+    <value>2FA uitschakelen</value>
+  </data>
+  <data name="Your account is protected with a second factor. Please choose your preferred option for entering your security code." xml:space="preserve">
+    <value>Uw account is beveiligd met een tweede factor. Kies uw voorkeursoptie voor het invoeren van uw beveiligingscode.</value>
+  </data>
+  <data name="Send me an email" xml:space="preserve">
+    <value>Stuur mij een e-mail</value>
+  </data>
+  <data name="Your login is protected with an authenticator app. Enter your authenticator code below." xml:space="preserve">
+    <value>Uw login is beveiligd met een authenticator-app. Voer uw authenticatorcode hieronder in.</value>
+  </data>
+  <data name="Don't have access to your authenticator device? " xml:space="preserve">
+    <value>Hebt u geen toegang tot uw authenticatorapparaat? </value>
+  </data>
+  <data name="You can sign in with a recovery code." xml:space="preserve">
+    <value>U kunt inloggen met een herstelcode.</value>
+  </data>
+  <data name="Invalid authenticator code." xml:space="preserve">
+    <value>Ongeldige authenticatorcode.</value>
+  </data>
+  <data name="Authenticator code" xml:space="preserve">
+    <value>Authenticatorcode</value>
+  </data>
+  <data name="Remember this machine" xml:space="preserve">
+    <value>Deze machine onthouden</value>
+  </data>
+  <data name="We've sent you an email with your two factor code. Please check your inbox and enter the code below." xml:space="preserve">
+    <value>We hebben u een e-mail gestuurd met uw tweefactorcode. Controleer uw inbox en voer de code hieronder in.</value>
+  </data>
+  <data name="Don't have access to your email account?" xml:space="preserve">
+    <value>Hebt u geen toegang tot uw e-mailaccount?</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Invalid code." xml:space="preserve">
+    <value>Ongeldige code.</value>
+  </data>
+  <data name="Your account is protected by 2-factor authentication." xml:space="preserve">
+    <value>Uw account is beveiligd door tweefactorauthenticatie.</value>
+  </data>
+  <data name="In addition to your password, a one time code is required when signing in." xml:space="preserve">
+    <value>Naast uw wachtwoord is een eenmalige code vereist bij het inloggen.</value>
+  </data>
+  <data name="Forget this browser" xml:space="preserve">
+    <value>Deze browser vergeten</value>
+  </data>
+  <data name="Reset recovery codes" xml:space="preserve">
+    <value>Herstelcodes resetten</value>
+  </data>
+  <data name="You can request your one time code for sign in by email." xml:space="preserve">
+    <value>U kunt uw eenmalige code voor inloggen per e-mail aanvragen.</value>
+  </data>
+  <data name="Privacy and cookie policy have not been accepted." xml:space="preserve">
+    <value>Privacy- en cookiebeleid zijn niet geaccepteerd.</value>
+  </data>
+  <data name="You must accept the policy before you can enable two factor authentication." xml:space="preserve">
+    <value>U moet het beleid accepteren voordat u tweefactorauthenticatie kunt inschakelen.</value>
+  </data>
+  <data name="The current browser has been forgotten. When you login again from this browser you will be prompted for your 2fa code." xml:space="preserve">
+    <value>De huidige browser is vergeten. Wanneer u opnieuw inlogt vanuit deze browser, wordt u gevraagd om uw 2FA-code.</value>
+  </data>
+  <data name="Recovery codes" xml:space="preserve">
+    <value>Herstelcodes</value>
+  </data>
+  <data name="Recovery Code" xml:space="preserve">
+    <value>Herstelcode</value>
+  </data>
+  <data name="Generate two-factor authentication (2FA) recovery codes" xml:space="preserve">
+    <value>Tweefactorauthenticatie (2FA) herstelcodes genereren</value>
+  </data>
+  <data name="Recovery codes can be used to sign in, if you should loose your device or have no access to your email account." xml:space="preserve">
+    <value>Herstelcodes kunnen worden gebruikt om in te loggen, als u uw apparaat kwijtraakt of geen toegang hebt tot uw e-mailaccount.</value>
+  </data>
+  <data name="Generating new recovery codes invalidates any previously generated codes." xml:space="preserve">
+    <value>Het genereren van nieuwe herstelcodes maakt alle eerder gegenereerde codes ongeldig.</value>
+  </data>
+  <data name="Generate new Recovery Codes" xml:space="preserve">
+    <value>Nieuwe herstelcodes genereren</value>
+  </data>
+  <data name="You have generated new recovery codes." xml:space="preserve">
+    <value>U hebt nieuwe herstelcodes gegenereerd.</value>
+  </data>
+  <data name="Put these codes in a safe place." xml:space="preserve">
+    <value>Bewaar deze codes op een veilige plaats.</value>
+  </data>
+  <data name="If you lose your device and don't have the recovery codes you will lose access to your account. Each code is valid only once, but you can always generate a new set." xml:space="preserve">
+    <value>Als u uw apparaat kwijtraakt en de herstelcodes niet hebt, verliest u de toegang tot uw account. Elke code is slechts één keer geldig, maar u kunt altijd een nieuwe set genereren.</value>
+  </data>
+  <data name="Back to Two Factor Authentication" xml:space="preserve">
+    <value>Terug naar tweefactorauthenticatie</value>
+  </data>
+  <data name="You have no recovery codes left." xml:space="preserve">
+    <value>U hebt geen herstelcodes meer over.</value>
+  </data>
+  <data name="You must generate a new set of recovery codes before you can log in with a recovery code." xml:space="preserve">
+    <value>U moet een nieuwe set herstelcodes genereren voordat u kunt inloggen met een herstelcode.</value>
+  </data>
+  <data name="You have 1 recovery code left." xml:space="preserve">
+    <value>U hebt nog 1 herstelcode over.</value>
+  </data>
+  <data name="You can generate a new set of recovery codes." xml:space="preserve">
+    <value>U kunt een nieuwe set herstelcodes genereren.</value>
+  </data>
+  <data name="You have {0} recovery codes left." xml:space="preserve">
+    <value>U hebt nog {0} herstelcodes over.</value>
+  </data>
+  <data name="You should generate a new set of recovery codes." xml:space="preserve">
+    <value>U zou een nieuwe set herstelcodes moeten genereren.</value>
+  </data>
+  <data name="Recovery code verification" xml:space="preserve">
+    <value>Herstelcode verificatie</value>
+  </data>
+  <data name="You have requested to log in with a recovery code. This login will not be remembered until you provide an authenticator app code at log in or disable 2FA and log in again." xml:space="preserve">
+    <value>U hebt gevraagd om in te loggen met een herstelcode. Deze login wordt niet onthouden totdat u een authenticator-app code invoert bij het inloggen of 2FA uitschakelt en opnieuw inlogt.</value>
+  </data>
+  <data name="Invalid recovery code entered." xml:space="preserve">
+    <value>Ongeldige herstelcode ingevoerd.</value>
+  </data>
+  <data name="External Logins" xml:space="preserve">
+    <value>Externe logins</value>
+  </data>
+  <data name="Manage your external logins" xml:space="preserve">
+    <value>Beheer uw externe logins</value>
+  </data>
+  <data name="Registered Logins" xml:space="preserve">
+    <value>Geregistreerde logins</value>
+  </data>
+  <data name="Add another service to log in." xml:space="preserve">
+    <value>Voeg een andere service toe om in te loggen.</value>
+  </data>
+  <data name="Link with {0}" xml:space="preserve">
+    <value>Koppelen met {0}</value>
+  </data>
+  <data name="The external login was removed." xml:space="preserve">
+    <value>De externe login is verwijderd.</value>
+  </data>
+  <data name="The external login was not removed." xml:space="preserve">
+    <value>De externe login is niet verwijderd.</value>
+  </data>
+  <data name="The external login was not added. External logins can only be associated with one account." xml:space="preserve">
+    <value>De externe login is niet toegevoegd. Externe logins kunnen alleen worden gekoppeld aan één account.</value>
+  </data>
+  <data name="The external login was added." xml:space="preserve">
+    <value>De externe login is toegevoegd.</value>
+  </data>
+  <data name="You've successfully authenticated with {0}." xml:space="preserve">
+    <value>U hebt zich succesvol geauthenticeerd met {0}.</value>
+  </data>
+  <data name="Please enter your email address below and click the Register button to finish logging in." xml:space="preserve">
+    <value>Voer uw e-mailadres hieronder in en klik op de knop Registreren om het inloggen te voltooien.</value>
+  </data>
+  <data name="Error from external provider: {0}" xml:space="preserve">
+    <value>Fout van externe provider: {0}</value>
+  </data>
+  <data name="Error loading external login information." xml:space="preserve">
+    <value>Fout bij het laden van externe login informatie.</value>
+  </data>
+  <data name="Error loading external login information during confirmation." xml:space="preserve">
+    <value>Fout bij het laden van externe login informatie tijdens bevestiging.</value>
+  </data>
+  <data name="This account has been locked out, please try again later." xml:space="preserve">
+    <value>Dit account is vergrendeld, probeer het later opnieuw.</value>
+  </data>
+  <data name="Locked out" xml:space="preserve">
+    <value>Vergrendeld</value>
+  </data>
+  <data name="Manage your account" xml:space="preserve">
+    <value>Beheer uw account</value>
+  </data>
+  <data name="Sign in to your account" xml:space="preserve">
+    <value>Log in op uw account</value>
+  </data>
+  <data name="Sign in with {0}" xml:space="preserve">
+    <value>Inloggen met {0}</value>
+  </data>
+  <data name="Do you really want to disable 2FA?" xml:space="preserve">
+    <value>Wil je 2FA echt uitschakelen?</value>
+  </data>
+  <data name="Please enter the code." xml:space="preserve">
+    <value>Voer de code in, alstublieft.</value>
+  </data>
+</root>

@@ -1,0 +1,16 @@
+﻿@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = AuthenticationLocalizer["Confirm email"];
+}
+
+<h1 class="headline-1">
+    @ViewData["Title"]
+</h1>
+
+<p>
+    @AuthenticationLocalizer ["Error confirming your email."]
+</p>
+<p>
+    <a asp-page="./ResendEmailConfirmation" type="submit" class="w-full btn-flat--primary">@Localizer["Resend email confirmation"]</a>
+</p>

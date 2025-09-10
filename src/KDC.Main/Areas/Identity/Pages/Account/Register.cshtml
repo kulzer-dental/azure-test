@@ -1,0 +1,94 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = SharedLocalizer["Sign Up"];
+}
+
+<h1 class="headline-1">@ViewData["Title"]</h1>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert--danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<div asp-validation-summary="ModelOnly" class="alert--danger" role="alert"></div>
+
+<form class="space-y-4 md:space-y-6" id="account" method="post">
+    <div class=input__container>
+        <label asp-for="Input.FirstName" class="input__label">
+            @SharedLocalizer["FirstName"]
+        </label>
+        <input asp-for="Input.FirstName" aria-required="true" class="input">
+
+        <span asp-validation-for="Input.FirstName"></span>
+    </div>
+
+    <div class=input__container>
+        <label asp-for="Input.LastName" class="input__label">
+            @SharedLocalizer["LastName"]
+        </label>
+        <input asp-for="Input.LastName" aria-required="true" class="input">
+
+        <span asp-validation-for="Input.LastName"></span>
+    </div>
+
+    <div class=input__container>
+        <label asp-for="Input.Email" class="input__label">@SharedLocalizer["Email"]</label>
+        <input asp-for="Input.Email" autocomplete="username" aria-required="true"
+            placeholder="@SharedLocalizer["name@example.com"]" class="input">
+
+            <span asp-validation-for="Input.Email" ></span>
+    </div>
+
+    <div class="input__container">
+        <label asp-for="Input.Password" class="input__label">@SharedLocalizer["Password"]</label>
+        <input asp-for="Input.Password" autocomplete="new-password" aria-required="true" class="input">
+        <span asp-validation-for="Input.Password"></span>
+    </div>
+
+    <div class="input__container">
+        <label asp-for="Input.ConfirmPassword" class="input__label">@SharedLocalizer["Confirm password"]</label>
+        <input asp-for="Input.ConfirmPassword" autocomplete="new-password" aria-required="true" class="input">
+        <span asp-validation-for="Input.ConfirmPassword"></span>
+    </div>
+
+    <button type="submit" class="w-full btn-flat--primary">@SharedLocalizer["Sign up"]</button>
+    <p class="text-muted text-center mt-8">
+        <a asp-page="./Login" class="link">@AuthenticationLocalizer["Back to Sign in"]</a>
+    </p>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+@* <section>
+            <h3>Use another service to register.</h3>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+                            about setting up this ASP.NET application to support logging in via external services</a>.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins!)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section> *@

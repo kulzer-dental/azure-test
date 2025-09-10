@@ -1,0 +1,22 @@
+﻿@page
+@model ErrorModel
+@{
+    ViewData["Title"] = SharedLocalizer["Error"];
+    Layout = "_LayoutErrors";
+}
+
+<h1 class="headline-1">
+    @ViewData["Title"]
+</h1>
+
+<p>@ValidationLocalizer["An error occurred while processing your request."]</p>
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <strong>Request ID:</strong><br /><code>@Model.RequestId</code>
+    </p>
+}
+<p>
+    <a href="#" onclick="history.back()" class="link">@SharedLocalizer["Go Back"]</a>
+</p>

@@ -1,0 +1,16 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = AuthenticationLocalizer["Confirm your email"];
+}
+
+
+<h1 class="headline-1">
+    @ViewData["Title"]
+</h1>
+
+<p>@AuthenticationLocalizer["Please check your email to confirm your account."]</p>
+<div>
+    <a asp-page="./Login" class="w-full btn-flat--primary">@AuthenticationLocalizer["Back to Sign in"]</a>
+</div>
+

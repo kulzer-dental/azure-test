@@ -1,0 +1,84 @@
+@tailwind components;
+
+@layer components {
+
+    .sidenav {
+        @apply fixed 
+        top-0 
+        left-0 
+        z-40 
+        w-64 
+        h-screen 
+        pt-14 
+        transition-transform 
+        -translate-x-full 
+        bg-white border-r 
+        border-gray-200 
+        md:translate-x-0 
+        dark:bg-gray-800 
+        dark:border-gray-700
+    }
+
+    .sidenav__items__container {
+        @apply overflow-y-auto 
+        py-5 
+        px-3 
+        h-full 
+        bg-white 
+        dark:bg-gray-800
+    }
+
+    .sidenav__section {
+        @apply pt-5 
+        mt-5 
+        space-y-2 
+        border-t 
+        border-gray-200 
+        dark:border-gray-700
+    }
+
+    .sidenav__item {}
+
+    .sidenav__link {
+        @apply flex 
+        items-center 
+        p-2 
+        text-base 
+        font-medium 
+        text-gray-900 
+        rounded-lg 
+        transition 
+        duration-75 
+        hover:bg-gray-100 
+        dark:hover:bg-gray-700 
+        dark:text-white 
+    }
+
+    .sidenav__item--active .sidenav__link {
+        @apply bg-gray-100 
+        dark:bg-gray-700 
+    }
+
+    .sidenav__link__icon {
+        @apply flex-shrink-0 
+        w-6 
+        h-6 
+        text-gray-500 
+        transition 
+        duration-75 
+        dark:text-gray-400 
+        group-hover:text-primary-600 
+        dark:group-hover:text-primary-500
+    }
+
+    .sidenav__item--active .sidenav__link__icon {
+        @apply text-primary-600 
+        dark:text-primary-500
+    }
+
+    .sidenav__link__label {
+        @apply ml-3
+    }
+
+
+}

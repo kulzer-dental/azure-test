@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="@System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName">
+
+<partial name="_GlobalHeaderPartial" />
+
+<body>
+
+    <div class="antialiased">
+        <partial name="_NavBarWithSideNavPartial" />
+
+        <!-- Sidebar -->
+
+        <aside class="sidenav" aria-label="Sidenav" id="drawer-navigation">
+            <div class="sidenav__items__container">
+
+                @await RenderSectionAsync("Sidenav", required: false)
+
+            </div>
+
+            <partial name="_SideNavCopyrightPartial" />
+
+        </aside>
+
+        <main class="p-4 md:ml-64 h-auto pt-20 text-black dark:text-white">
+            @RenderBody()
+        </main>
+    </div>
+
+    <partial name="_GlobalScriptsPartial" />
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

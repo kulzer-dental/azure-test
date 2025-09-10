@@ -1,0 +1,101 @@
+﻿@page
+@using Microsoft.AspNetCore.Http.Features
+@model TwoFactorAuthenticationModel
+@{
+    ViewData["Title"] = AuthenticationLocalizer["Two-factor authentication (2FA)"];
+}
+
+<h1 class="headline-1">@ViewData["Title"]</h1>
+<partial name="_StatusMessage" for="StatusMessage" />
+
+@{
+    var consentFeature = HttpContext.Features.Get<ITrackingConsentFeature>();
+    @if (consentFeature?.CanTrack ?? true)
+    {
+        <div class="mt-8 mb-8">
+            @if (Model.Is2faEnabled)
+            {
+                    @if (Model.RecoveryCodesLeft == 0)
+                    {
+                        <div class="alert--danger mb-8" role="alert">
+                        <strong>@AuthenticationLocalizer["You have no recovery codes left."]</strong>
+                        <p>@AuthenticationLocalizer["You must generate a new set of recovery codes before you can log in with a recovery code."]</p>
+                        <a class="btn-flat--primary" asp-page="./GenerateRecoveryCodes">@AuthenticationLocalizer["Generate new recovery codes"]</a>
+                        </div>
+                    }
+                    else if (Model.RecoveryCodesLeft == 1)
+                    {
+                        <div class="alert--danger mb-8" role="alert">
+                        <strong>@AuthenticationLocalizer["You have 1 recovery code left."]</strong>
+                        <p>@AuthenticationLocalizer["You should generate a new set of recovery codes."]</p>
+                        <a class="btn-flat--primary" asp-page="./GenerateRecoveryCodes">@AuthenticationLocalizer["Generate new recovery codes"]</a>
+                        </div>
+                    }
+                    else if (Model.RecoveryCodesLeft <= 3)
+                    {
+                        <div class="alert--danger mb-8" role="alert">
+                        <strong>@AuthenticationLocalizer["You have {0} recovery codes left.", @Model.RecoveryCodesLeft]</strong>
+                        <p>@AuthenticationLocalizer["You can generate a new set of recovery codes."]</p>
+                        <a class="btn-flat--primary" asp-page="./GenerateRecoveryCodes">@AuthenticationLocalizer["Generate new recovery codes"]</a>
+                        </div>
+                    }
+
+
+                    <div class="alert--success mb-8" role="alert">
+                    <strong>@AuthenticationLocalizer["Your account is protected by 2-factor authentication."]</strong><br />
+                    <p>@AuthenticationLocalizer["In addition to your password, a one time code is required when signing in."]</p>
+                    </div>
+                    
+                    <div class="mt-4 flex items-center gap-1">
+                        @if (Model.IsMachineRemembered)
+                        {
+                            <form method="post">
+                            <button type="submit" class="btn-flat--primary">@AuthenticationLocalizer["Forget this browser"]</button>
+                            </form>
+                        }
+                    <a asp-page="./Disable2fa" class="btn-flat--danger">@AuthenticationLocalizer["Disable 2FA"]</a>
+                    <a asp-page="./GenerateRecoveryCodes" class="btn-flat--primary">@AuthenticationLocalizer["Reset recovery codes"]</a>
+                    </div>
+
+                    <div class="mb-8 mt-8">
+                    <strong>@SharedLocalizer["Email"]</strong><br />
+                        <div class="mt-4">
+                        @AuthenticationLocalizer["You can request your one time code for sign in by email."]
+                        </div>
+                    </div>
+
+                    <div class="mb-8 mt-8">
+                    <strong>@AuthenticationLocalizer["Authenticator app"]</strong><br />
+                        <div class="mt-4">
+                        @AuthenticationLocalizer["Authenticator apps are available for free on Apple and Android phones. You don't need a data plan or access to your emails for using it."]
+                        </div>
+                        <div class="mt-8">
+                            @if (!Model.HasAuthenticator)
+                            {
+                                <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn-flat--primary">@AuthenticationLocalizer["Add authenticator app"]</a>
+                            }
+                            else
+                            {
+                            <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn-flat--danger">@AuthenticationLocalizer["Remove authenticator app"]</a>
+                            }
+                        </div>
+                    </div>
+            }
+            else {
+                <a asp-page="./Enable2fa" class="btn-flat--primary">@Localizer["Enable 2FA"]</a>
+            }
+        </div>
+
+    }
+    else
+    {
+        <div class="alert--danger" role="alert">
+            <strong>@AuthenticationLocalizer["Privacy and cookie policy have not been accepted."]</strong>
+            <p>@AuthenticationLocalizer["You must accept the policy before you can enable two factor authentication."]</p>
+        </div>
+    }
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

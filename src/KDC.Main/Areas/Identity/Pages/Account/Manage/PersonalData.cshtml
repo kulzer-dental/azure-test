@@ -1,0 +1,17 @@
+﻿@page
+@model PersonalDataModel
+@{
+    ViewData["Title"] = ProfileManagementLocalizer["Personal Data"];
+}
+
+<h1 class="headline-1">@ViewData["Title"]</h1>
+
+<p>@ProfileManagementLocalizer["Your account contains personal data that you have given us."]</p>
+
+<form id="download-data" asp-page="DownloadPersonalData" method="post" class="mt-4">
+    <button class="btn-flat--primary" type="submit">@ProfileManagementLocalizer["Download your data"]</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

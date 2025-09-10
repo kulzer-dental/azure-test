@@ -1,0 +1,22 @@
+﻿@page
+@model GenerateRecoveryCodesModel
+@{
+    ViewData["Title"] = AuthenticationLocalizer["Generate two-factor authentication (2FA) recovery codes"];
+}
+
+<h3 class="headline-1">@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div class="mt-4">
+    <p>
+        @AuthenticationLocalizer["Recovery codes can be used to sign in, if you should loose your device or have no access to your email account."]
+    </p>
+    <p>
+        @AuthenticationLocalizer["Generating new recovery codes invalidates any previously generated codes."]
+    </p>
+</div>
+<div class="mt-8">
+    <form method="post">
+        <button class="btn-flat--danger" type="submit">@AuthenticationLocalizer["Generate new Recovery Codes"]</button>
+    </form>
+</div>

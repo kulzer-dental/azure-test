@@ -1,0 +1,32 @@
+﻿@page
+@model ExternalLoginModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1 class="headline-1">
+    @ViewData["Title"]
+</h1>
+
+<div asp-validation-summary="ModelOnly" class="alert--danger" role="alert"></div>
+<div class="alert--success">@AuthenticationLocalizer["You've successfully authenticated with {0}.", @Model.ProviderDisplayName]</div>
+
+<p id="external-login-description" class="text-info">
+    @AuthenticationLocalizer["Please enter your email address below and click the Register button to finish logging in."]
+</p>
+
+<form class="space-y-4 md:space-y-6" asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+    <div class=input__container>
+        <label asp-for="Input.Email" class="input__label">@SharedLocalizer["Email"]</label>
+        <input asp-for="Input.Email" autocomplete="username" aria-required="true" placeholder="@SharedLocalizer["name@example.com"]"
+            class="input">
+
+        <span asp-validation-for="Input.Email"></span>
+    </div>
+    
+    <button type="submit" class="w-full btn-flat--primary">@SharedLocalizer["Register"]</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

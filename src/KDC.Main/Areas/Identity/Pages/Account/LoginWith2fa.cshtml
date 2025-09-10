@@ -1,0 +1,34 @@
+﻿@page
+@model LoginWith2faModel
+@{
+    ViewData["Title"] = AuthenticationLocalizer["Two-factor authentication"];
+}
+
+<h1 class="headline-1">@ViewData["Title"]</h1>
+<p>@AuthenticationLocalizer["Your account is protected with a second factor. Please choose your preferred option for entering your security code."]</p>
+
+<div asp-validation-summary="ModelOnly" class="alert--danger" role="alert"></div>
+
+<form class="space-y-4 md:space-y-6" id="account" method="post">
+    <input asp-for="ReturnUrl" type="hidden" />
+    <input asp-for="RememberMe" type="hidden" />
+
+    @foreach (var providerName in Model.Providers)
+    {
+        <button type="submit" name="Provider" value="@providerName" class="w-full btn-flat--primary">
+            @switch(@providerName) {
+                case "Email":
+                    <text>@AuthenticationLocalizer["Send me an email"]</text>
+                break;
+                case "Authenticator":
+                    <text>@AuthenticationLocalizer["Authenticator app"]</text>
+                break;
+            }
+        </button>
+    }
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,70 @@
+﻿@page
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+@using System.Globalization
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
+@model IndexModel
+@{
+    ViewData["Title"] = SharedLocalizer["Profile"];
+    var requestCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>()!;
+
+    var userSelectedCulture = Model.Input.Culture;
+    var currentUiCulture = requestCulture.RequestCulture.UICulture.Name;
+
+    var cultureItems = LocOptions.Value.SupportedUICultures!
+        .Select(c => new SelectListItem { 
+            Value = c.Name, 
+            Text = c.DisplayName, 
+            Selected = String.IsNullOrEmpty(userSelectedCulture) && c.Name == currentUiCulture })
+        .ToList();
+    // List of all possible languages
+        @* var cultureItems = CultureInfo.GetCultures(CultureTypes.AllCultures)
+            .Where(c => c.IsNeutralCulture == true)
+            .OrderBy(c => c.NativeName)
+            .Select(c => new SelectListItem { Value = c.Name, Text = c.NativeName, Selected = String.IsNullOrEmpty(userSelectedCulture) && c.Name == currentUiCulture })
+            .ToList(); *@
+}
+
+<h1 class="headline-1">@ViewData["Title"]</h1>
+
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<form id="profile-form" method="post" class="lg:w-96">
+    <div asp-validation-summary="ModelOnly" class="alert--danger" role="alert"></div>
+
+    <div class="input__container">
+        <label asp-for="Username" class="input__label">@SharedLocalizer["Email"]</label>
+        <input asp-for="Username" aria-required="true" disabled
+            class="input">
+        <span asp-validation-for="Username"></span>
+    </div>
+
+    <div class="input__container mt-4">
+        <label asp-for="Input.PhoneNumber" class="input__label">@SharedLocalizer["Phone number"]</label>
+        <input asp-for="Input.PhoneNumber" aria-required="true" placeholder="@SharedLocalizer["Please enter your phone number."]"
+            class="input">
+        <span asp-validation-for="Input.PhoneNumber"></span>
+    </div>
+
+    <div class="input__container mt-4">
+        <label for="countries" class="input__label">
+            @ProfileManagementLocalizer["Language"]
+            </label>
+        <select asp-for="Input.Culture" asp-items="cultureItems" class="input"></select>
+        <span asp-validation-for="Input.Culture"></span>
+    </div>
+
+
+    <div class="mt-8">
+        <button id="update-profile-button" type="submit" class="btn-flat--primary">@SharedLocalizer["Save"]</button>
+    </div>
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

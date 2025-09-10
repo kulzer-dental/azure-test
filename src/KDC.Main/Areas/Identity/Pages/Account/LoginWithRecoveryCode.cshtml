@@ -1,0 +1,29 @@
+﻿@page
+@model LoginWithRecoveryCodeModel
+@{
+    ViewData["Title"] = AuthenticationLocalizer["Recovery code verification"];
+}
+
+<h1 class="headline-1">@ViewData["Title"]</h1>
+
+<p>
+    @AuthenticationLocalizer["You have requested to log in with a recovery code. This login will not be remembered until you provide an authenticator app code at log in or disable 2FA and log in again."]
+</p>
+
+ <form method="post" class="space-y-4 md:space-y-6">
+            <div asp-validation-summary="ModelOnly" class="alert--danger" role="alert"></div>
+
+            <div class=input__container>
+        <label asp-for="Input.RecoveryCode" class="input__label">@AuthenticationLocalizer["Recovery Code"]</label>
+        <input asp-for="Input.RecoveryCode" autocomplete="off" aria-required="true" placeholder="@AuthenticationLocalizer["Recovery Code"]"
+                    class="input">
+
+                <span asp-validation-for="Input.RecoveryCode"></span>
+            </div>
+
+            <button type="submit" class="w-full btn-flat--primary">@SharedLocalizer["Sign in"]</button>
+        </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

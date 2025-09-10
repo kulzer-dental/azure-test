@@ -1,0 +1,82 @@
+﻿@page
+@model EnableAuthenticatorModel
+@{
+    ViewData["Title"] = AuthenticationLocalizer["Configure authenticator app"];
+}
+
+<h1 class="headline-1">@ViewData["Title"]</h3>
+
+    <partial name="_StatusMessage" for="StatusMessage" />
+
+    <div>
+        <p>@AuthenticationLocalizer["To use an authenticator app go through the following steps:"]</p>
+
+
+        <ol class="list-decimal list-inside mt-8">
+            <li>
+                <span>@AuthenticationLocalizer["Download a two-factor authenticator app to your phone."]</span>
+
+                <div class="my-8 ms-4 flex gap-8">
+                    <div>
+                        <div class="mb-4">
+                            <strong>Microsoft Authenticator</strong>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="https://go.microsoft.com/fwlink/?Linkid=825072" target="_blank">
+                                <img src="/img/AppStore.svg"></a>
+                            <a href="https://go.microsoft.com/fwlink/?Linkid=825073" target="_blank">
+                                <img src="/img/PlayStore.svg"></a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="mb-4">
+                            <strong>Google Authenticator</strong>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en"
+                                target="_blank">
+                                <img src="/img/AppStore.svg"></a>
+                            <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8"
+                                target="_blank">
+                                <img src="/img/PlayStore.svg"></a>
+                        </div>
+                    </div>
+                </div>
+
+            </li>
+            <li>
+                <span>@AuthenticationLocalizer["Scan the QR Code into your authenticator app"]</span>
+                <p class="text-muted ms-4"> @AuthenticationLocalizer["Or enter this key:"] "<kbd>@Model.SharedKey</kbd>".</p>
+                <div class="my-8 ms-4">
+                    <div id="qrCode"></div>
+                    <div id="qrCodeData" data-url="@Model.AuthenticatorUri"></div>
+                </div>
+            </li>
+            <li>
+                <span>@AuthenticationLocalizer["Verify the code"]</span>
+                <p class="mt-4">@AuthenticationLocalizer["Once you have scanned the QR code or input the key above, your two factor authentication app will provide you with a unique code. Enter the code in the confirmation box below."]</p>
+            </li>
+        </ol>
+
+        <form id="send-code" method="post" class="lg:w-96">
+
+            <div asp-validation-summary="ModelOnly" class="alert--danger" role="alert"></div>
+
+            <div class="input__container mt-4">
+                <label asp-for="Input.Code" class="input__label">@AuthenticationLocalizer["Verification Code"]</label>
+                <input asp-for="Input.Code" autocomplete="off" aria-required="true" placeholder="@AuthenticationLocalizer["Please enter the code."]
+                    class="input">
+                <span asp-validation-for="Input.Code"></span>
+            </div>
+
+            <div class="mt-8">
+                <button type="submit" class="btn-flat--primary">@AuthenticationLocalizer["Verify code"]</button>
+            </div>
+        </form>
+    </div>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+        <script type="text/javascript" src="~/lib/qrcodejs/qrcode.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="~/js/qr.js" asp-append-version="true"></script>
+    }

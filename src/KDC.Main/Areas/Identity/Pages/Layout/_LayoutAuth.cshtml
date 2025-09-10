@@ -1,0 +1,75 @@
+@using System.Globalization;
+@using KDC.Main.Config
+@inject I18nConfig i18nConfig
+
+@{
+    var supportedCultures = i18nConfig.SupportedCultures.Where(c => c != Thread.CurrentThread.CurrentUICulture.Name);
+}
+
+<!DOCTYPE html>
+<html lang="@System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName">
+
+<partial name="_GlobalHeaderPartial" />
+
+<body class="antialiased">
+
+    <main>
+        <section>
+            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                <div class="flex items-center mb-8 -ms-1">
+                    <img src="~/img/logo.svg" class="h-12 dark:hidden" alt="Kulzer Logo" />
+                    <img src="~/img/logo_inverted.svg" class="h-12 light:hidden" alt="Kulzer Logo" />
+                </div>
+
+                <div
+                    class="w-full md:mt-0 sm:max-w-md xl:p-0">
+                    
+                    <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                            @RenderBody()
+                        </div>
+                    </div>
+
+                    <div class="flex items-center w-full justify-between sm:p-2 my-2">
+                        <div>
+
+                            @* <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                                class="btn-text--primary flex items-center" type="button">
+                                <span>@Thread.CurrentThread.CurrentUICulture.DisplayName</span>
+                                <span class="material-symbols-outlined">arrow_drop_down</span>
+                            </button>
+
+                            <!-- Dropdown menu -->
+                            <div id="dropdown"
+                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                    aria-labelledby="dropdownDefaultButton">
+                                    @foreach(var c in supportedCultures) {
+                                        var cultureInfo = new CultureInfo(c);
+                                         <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 link">@cultureInfo.NativeName</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div> *@
+
+                            @await Html.PartialAsync("_SelectLanguagePartial")
+
+                        </div>
+                        <div class="text-muted pe-4">
+                            &copy; @DateTime.Now.Year Kulzer GmbH
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+    </main>
+
+    <partial name="_GlobalScriptsPartial" />
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

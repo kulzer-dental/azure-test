@@ -1,0 +1,18 @@
+﻿@page
+@model Enable2faModel
+@{
+    ViewData["Title"] = AuthenticationLocalizer["Enable 2-factor authentication"];
+}
+
+<h1 class="headline-1">@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+
+
+<form method="post" class="lg:w-96">
+
+    <div asp-validation-summary="ModelOnly" class="alert--danger" role="alert"></div>
+
+    <div class="mt-8">
+        <button type="submit" class="btn-flat--primary">@SharedLocalizer["Enable"]</button>
+    </div>
+</form>

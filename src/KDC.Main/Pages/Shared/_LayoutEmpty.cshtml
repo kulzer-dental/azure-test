@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="@System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName">
+
+<partial name="_GlobalHeaderPartial" />
+
+<body class="antialiased">
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <partial name="_GlobalScriptsPartial" />
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

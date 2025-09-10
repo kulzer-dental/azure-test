@@ -1,0 +1,13 @@
+﻿@page
+@using Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@model KDC.Main.Areas.Admin.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<h1>@SharedLocalizer["Welcome to Admin"]</h1>
+<h2>@SharedLocalizer["It Works!"]</h2>
+<h3>@System.Threading.Thread.CurrentThread.CurrentCulture.Name</h3>
+<h3>@System.Threading.Thread.CurrentThread.CurrentUICulture.Name</h3>

@@ -1,0 +1,30 @@
+﻿@page "/Account/Logout"
+@model LogoutModel
+@{
+    ViewData["Title"] = SharedLocalizer["Log out"];
+}
+
+<h1 class="headline-1">
+    @ViewData["Title"]
+</h1>
+
+@{
+    if (User.Identity?.IsAuthenticated ?? false)
+    {
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+            <p>@SharedLocalizer["Do you really want to log out?"]</p>
+
+            <p class="mt-8">
+                <button type="button" onclick="history.back()" class="btn-flat">@SharedLocalizer["Go Back"]</button>
+                <button type="submit" class="btn-flat--primary">@SharedLocalizer["Log out"]</button>
+            </p>
+        </form>
+    }
+    else
+    {
+        <p>@SharedLocalizer["You have successfully logged out of the application."]</p>
+        <p>
+            <a asp-page="./Login" class="link">@AuthenticationLocalizer["Back to Sign in"]</a>
+        </p>
+    }
+}

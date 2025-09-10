@@ -1,0 +1,59 @@
+name: "kulzer-digital-core-x"
+
+services:
+  kdc-main:
+    container_name: kdc-main
+    image: ghcr.io/kulzer-dental/kdc-experimental-image:latest
+    ports:
+      - "5000:5000"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ConnectionStrings__DefaultConnection: "Server=mssql,1433;Initial Catalog=KulzerDigitalCore;User Id=SA;Password=P4ssW0rd$123;TrustServerCertificate=True;Encrypt=False;"
+      Smtp__SenderEmail: "no-reply@kdc.local"
+      Smtp__SenderName: "Kulzer Digital Core"
+      Smtp__UserName: "admin"
+      Smtp__Password: "P4ssW0rd$123"
+      Smtp__Host: "smtp4dev"
+      Smtp__Port: 25
+      Smtp__UseSSL: false
+    depends_on:
+      - mssql
+      - smtp4dev
+  smtp4dev:
+    image: rnwood/smtp4dev:v3
+    container_name: kdc-smtp4dev
+    ports:
+      # Change the number before : to the port the web interface should be accessible on
+      - "6010:80"
+      # Change the number before : to the port the SMTP server should be accessible on
+      - "25:25"
+      # Change the number before : to the port the IMAP server should be accessible on
+      - "143:143"
+    volumes:
+      # This is where smtp4dev stores the database..
+      - smtp4dev-data:/smtp4dev
+    environment:
+     Smtp__SenderEmail: "no-reply@kdc.local"
+     Smtp__SenderName: "Kulzer Digital Core"
+     Smtp__UserName: "admin"
+     Smtp__Password: "P4ssW0rd$123"
+     Smtp__Host: "localhost"
+     Smtp__Port: 25
+     Smtp__UseSSL: false
+
+  mssql:
+    image: mcr.microsoft.com/azure-sql-edge
+    container_name: kdc-mssql
+    ports:
+      - "6005:1433"
+    environment:
+      ACCEPT_EULA: "1"
+      MSSQL_USER: "SA"
+      MSSQL_SA_PASSWORD: "P4ssW0rd$123"
+      MSSQL_PID: "Developer"
+    volumes:
+      - "mssql-azuresql-edge-data:/var/opt/mssql"
+
+volumes:
+  smtp4dev-data:
+  mssql-azuresql-edge-data:

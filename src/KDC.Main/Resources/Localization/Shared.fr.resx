@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Soumettre</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Retour</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="Resend" xml:space="preserve">
+    <value>Renvoyer</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Retirer</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Activer</value>
+  </data>
+  <data name="Go Back" xml:space="preserve">
+    <value>Retourner</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Se connecter</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Se déconnecter</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>S'inscrire</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Mot de passe oublié ?</value>
+  </data>
+  <data name="Sign in" xml:space="preserve">
+    <value>Se connecter</value>
+  </data>
+  <data name="Sign up" xml:space="preserve">
+    <value>S'inscrire</value>
+  </data>
+  <data name="Sign out" xml:space="preserve">
+    <value>Se déconnecter</value>
+  </data>
+  <data name="Log out" xml:space="preserve">
+    <value>Déconnexion</value>
+  </data>
+  <data name="or" xml:space="preserve">
+    <value>ou</value>
+  </data>
+  <data name="Forgot password?" xml:space="preserve">
+    <value>Mot de passe oublié ?</value>
+  </data>
+  <data name="Forgot your password?" xml:space="preserve">
+    <value>Avez-vous oublié votre mot de passe ?</value>
+  </data>
+  <data name="Don't have an account yet?" xml:space="preserve">
+    <value>Vous n'avez pas encore de compte ?</value>
+  </data>
+  <data name="Do you really want to log out?" xml:space="preserve">
+    <value>Voulez-vous vraiment vous déconnecter ?</value>
+  </data>
+  <data name="Remember me?" xml:space="preserve">
+    <value>Se souvenir de moi ?</value>
+  </data>
+  <data name="You have successfully logged out of the application." xml:space="preserve">
+    <value>Vous vous êtes déconnecté avec succès de l'application.</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Nom de famille</value>
+  </data>
+  <data name="Your email" xml:space="preserve">
+    <value>Votre e-mail</value>
+  </data>
+  <data name="name@example.com" xml:space="preserve">
+    <value>nom@exemple.com</value>
+  </data>
+  <data name="Confirm password" xml:space="preserve">
+    <value>Confirmer le mot de passe</value>
+  </data>
+  <data name="Phone number" xml:space="preserve">
+    <value>Numéro de téléphone</value>
+  </data>
+  <data name="Please enter your phone number." xml:space="preserve">
+    <value>Veuillez saisir votre numéro de téléphone.</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Succès</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Avertissement</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Chargement...</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bienvenue</value>
+  </data>
+  <data name="Welcome to Kulzer" xml:space="preserve">
+    <value>Bienvenue chez Kulzer</value>
+  </data>
+  <data name="Welcome to Admin" xml:space="preserve">
+    <value>Bienvenue dans Admin</value>
+  </data>
+  <data name=" Welcome to" xml:space="preserve">
+    <value> Bienvenue chez</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer cet élément ?</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Accès refusé</value>
+  </data>
+  <data name="Access denied" xml:space="preserve">
+    <value>Vous n'avez pas accès à cette page.</value>
+  </data>
+  <data name="It Works!" xml:space="preserve">
+    <value>Ça marche !</value>
+  </data>
+  <data name="Your profile has been updated." xml:space="preserve">
+    <value>Votre profil a été mis à jour.</value>
+  </data>
+  <data name="404 Not Found" xml:space="preserve">
+    <value>404 Non trouvé</value>
+  </data>
+  <data name="The page was not found." xml:space="preserve">
+    <value>La page n'a pas été trouvée.</value>
+  </data>
+  <data name="Set your password" xml:space="preserve">
+    <value>Définir votre mot de passe</value>
+  </data>
+  <data name="Set passwort" xml:space="preserve">
+    <value>Définir le mot de passe</value>
+  </data>
+  <data name="Please enter your new password." xml:space="preserve">
+    <value>Veuillez saisir votre nouveau mot de passe.</value>
+  </data>
+  <data name="Please confirm your new password." xml:space="preserve">
+    <value>Veuillez confirmer votre nouveau mot de passe.</value>
+  </data>
+  <data name="You do not have a password for this site. Add a password so you can log in without an external login." xml:space="preserve">
+    <value>Vous n'avez pas de mot de passe pour ce site. Ajoutez un mot de passe afin de pouvoir vous connecter sans connexion externe.</value>
+  </data>
+  <data name="Change password" xml:space="preserve">
+    <value>Changer le mot de passe</value>
+  </data>
+  <data name="Your password has been changed." xml:space="preserve">
+    <value>Votre mot de passe a été modifié.</value>
+  </data>
+  <data name="Your password has been set." xml:space="preserve">
+    <value>Votre mot de passe a été défini.</value>
+  </data>
+  <data name="Your password has been reset." xml:space="preserve">
+    <value>Votre mot de passe a été réinitialisé.</value>
+  </data>
+  <data name="Current password" xml:space="preserve">
+    <value>Mot de passe actuel</value>
+  </data>
+  <data name="New password" xml:space="preserve">
+    <value>Nouveau mot de passe</value>
+  </data>
+  <data name="Confirm new password" xml:space="preserve">
+    <value>Confirmer le nouveau mot de passe</value>
+  </data>
+  <data name="Reset Password" xml:space="preserve">
+    <value>Réinitialiser le mot de passe</value>
+  </data>
+  <data name="Reset password confirmation" xml:space="preserve">
+    <value>Confirmation de réinitialisation du mot de passe</value>
+  </data>
+  <data name="Please click here to log in." xml:space="preserve">
+    <value>Veuillez cliquer ici pour vous connecter.</value>
+  </data>
+  <data name="Please check your inbox" xml:space="preserve">
+    <value>Veuillez vérifier votre boîte de réception</value>
+  </data>
+  <data name="We've sent you a link to reset your password. Please check your email to reset your password." xml:space="preserve">
+    <value>Nous vous avons envoyé un lien pour réinitialiser votre mot de passe. Veuillez vérifier votre e-mail pour réinitialiser votre mot de passe.</value>
+  </data>
+  <data name="Contact us" xml:space="preserve">
+    <value>Nous contacter</value>
+  </data>
+  <data name="Please enter new email." xml:space="preserve">
+    <value>Veuillez saisir la nouvelle adresse e-mail.</value>
+  </data>
+</root>

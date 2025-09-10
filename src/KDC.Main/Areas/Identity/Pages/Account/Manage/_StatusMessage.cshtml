@@ -1,0 +1,15 @@
+﻿@model string
+
+@if (!String.IsNullOrEmpty(Model))
+{
+    var statusMessageClass = Model.StartsWith("Error") ? "danger" : "success";
+    if(Model.StartsWith("Error")) {
+         <div class="alert--danger">
+            @SharedLocalizer[Model]
+         </div>
+    } else {
+        <div class="alert--success">
+            @SharedLocalizer[Model]
+        </div>
+    }
+}

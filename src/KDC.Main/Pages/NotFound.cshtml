@@ -1,0 +1,16 @@
+﻿@page
+
+@{
+    ViewData["Title"] = SharedLocalizer["404 Not Found"];
+    Layout = "_LayoutErrors";
+}
+
+<h1 class="headline-1">
+    @ViewData["Title"]
+</h1>
+
+<p>@SharedLocalizer["The page was not found."]</p>
+
+<p>
+    <a href="#" onclick="history.back()" class="link">@SharedLocalizer["Go Back"]</a>
+</p>

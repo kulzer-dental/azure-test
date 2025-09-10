@@ -1,0 +1,33 @@
+@tailwind components;
+
+@layer components {
+  .checkbox {
+    @apply flex items-center;
+  }
+
+  .checkbox__input {
+    @apply w-5
+    h-5 
+    text-primary-600 
+    bg-gray-100 
+    border-gray-300 
+    rounded 
+    focus:ring-primary-500 
+    dark:focus:ring-primary-600 
+    focus:ring-2 
+    ;
+  }
+
+  .checkbox__label__input__container {
+    @apply flex items-center h-5;
+  }
+
+  .checkbox__label {
+    @apply text-gray-500 
+    dark:text-gray-300;
+  }
+
+  .checkbox__label__container {
+    @apply ms-3 text-sm pt-1;
+  }
+}

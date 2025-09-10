@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "ms-dotnettools.csdevkit",
+    "vivaxy.vscode-conventional-commits",
+    "usernamehw.errorlens",
+    "teledemic.branch-warnings",
+    "GitHub.vscode-pull-request-github",
+    "adrianwilczynski.user-secrets",
+    "IronGeek.vscode-env",
+    "mehyaa.branch-cleanup",
+    "kamikillerto.vscode-colorize",
+    "jgclark.vscode-todo-highlight",
+    "csstools.postcss",
+    "bradlc.vscode-tailwindcss"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "dotnet.defaultSolution": "KulzerDigitalCore.sln",
+  "conventionalCommits.scopes": ["devtools", "KDC.Main"],
+  "conventionalCommits.gitmoji": false,
+  "conventionalCommits.promptBody": false,
+  "conventionalCommits.promptFooter": false,
+  "editor.formatOnSave": false,
+  "editor.formatOnPaste": false,
+  "search.useIgnoreFiles": true,
+  "explorer.excludeGitIgnore": false,
+  "csharp.preview.improvedLaunchExperience": true,
+  "files.associations": { "*.scss": "postcss" },
+  "files.exclude": {
+    "**/*.css": false
+  }
+}

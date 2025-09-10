@@ -1,0 +1,20 @@
+﻿@page
+@model ResetAuthenticatorModel
+@{
+    ViewData["Title"] = AuthenticationLocalizer["Remove authenticator app"];
+}
+
+<h1 class="headline-1">@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div>
+    <p>
+            <strong>@AuthenticationLocalizer["If you remove your authenticator app you will not be able to sign in with it anymore."]</strong><br />
+            <span>@AuthenticationLocalizer["After removal, you can add a new app."]</strong>
+    </p>
+</div>
+<div class="mt-8">
+    <form id="reset-authenticator-form" method="post">
+            <button id="reset-authenticator-button" class="btn-flat--danger" type="submit">@AuthenticationLocalizer["Remove authenticator app"]</button>
+    </form>
+</div>

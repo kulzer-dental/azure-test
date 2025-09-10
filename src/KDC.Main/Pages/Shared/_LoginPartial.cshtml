@@ -1,0 +1,62 @@
+﻿@using Localization
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<Authentication> AuthenticationLocalizer
+@inject IHtmlLocalizer<Shared> SharedLocalizer
+
+@if (SignInManager.IsSignedIn(User))
+{
+    var userName = User.Identity?.Name;
+    var user = await UserManager.FindByNameAsync(userName!);
+    var claims = await UserManager.GetClaimsAsync(user!);
+    var displayNameClaim = claims.FirstOrDefault(c => c.Type == AppClaimTypes.DisplayName);
+    var displayName = displayNameClaim?.Value ?? userName;
+
+    <div class="flex items-center gap-4 divide-x">
+    <div class="font-medium dark:text-white text-end">
+        <div>@displayName</div>
+        <div class="text-sm text-gray-500 dark:text-gray-400">@userName</div>
+    </div>
+    <div class="ps-4">
+        <div class="flex items-center gap-4">
+
+            <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn-icon">
+                <span class="material-symbols-outlined">
+                    manage_accounts
+                </span>
+                    <span class="sr-only">@AuthenticationLocalizer["Manage your account"]</span>
+            </a>
+
+            @if (User.IsInRole(AppRoles.Admin) || User.IsInRole(AppRoles.Developer))
+                {
+                    <a asp-area="Admin" asp-page="/Index" class="btn-icon">
+                        <span class="material-symbols-outlined">
+                            settings
+                        </span>
+                        <span class="sr-only">@SharedLocalizer["Admin"]</span>
+                    </a>
+                }
+
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
+                    asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                    <button type="submit" class="btn-icon--primary">
+                        <span class="material-symbols-outlined">
+                            logout
+                        </span>
+                        <span class="sr-only">@SharedLocalizer["Sign out"]</span>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+}
+else
+{
+    <a asp-area="Identity" asp-page="/Account/Login" class="btn-text">
+    Sign in</a>
+    <a asp-area="Identity" asp-page="/Account/Register" class="btn-flat--primary">
+    Register</a>
+}

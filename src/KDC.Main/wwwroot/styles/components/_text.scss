@@ -1,0 +1,18 @@
+@tailwind components;
+
+@layer components {
+  .text-muted {
+    @apply text-sm font-light text-gray-500 dark:text-gray-400;
+  }
+
+  .headline-1 {
+    @apply text-xl 
+    font-bold 
+    leading-tight 
+    tracking-tight 
+    md:text-2xl 
+    text-gray-900 
+    dark:text-white 
+    mb-4;
+  }
+}

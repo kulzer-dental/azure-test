@@ -1,0 +1,14 @@
+﻿@page
+@model LockoutModel
+@{
+    ViewData["Title"] = AuthenticationLocalizer["Locked out"];
+}
+
+<h1 class="headline-1">
+    @ViewData["Title"]
+</h1>
+
+<p>@AuthenticationLocalizer["This account has been locked out, please try again later."]</p>
+<p>
+    <a asp-page="./Login" class="link">@SharedLocalizer["Go Back"]</a>
+</p>

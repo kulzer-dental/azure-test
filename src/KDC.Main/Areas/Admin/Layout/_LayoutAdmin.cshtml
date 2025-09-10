@@ -1,0 +1,97 @@
+﻿@using KDC.Main.Security
+@inject IWebHostEnvironment environment
+
+<!DOCTYPE html>
+<html lang="@System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName">
+
+<partial name="_GlobalHeaderPartial" />
+
+<body>
+
+    <div class="antialiased">
+        <partial name="_NavBarWithSideNavPartial" />
+
+        <!-- Sidebar -->
+
+        <aside class="sidenav" aria-label="Sidenav" id="drawer-navigation">
+            <div class="sidenav__items__container">
+                <ul class="space-y-2">
+                    <li class="sidenav__item">
+                        <a id="profile" asp-page="./Index" class="sidenav__link group">
+                            <span aria-hidden="true" class="material-symbols-outlined sidenav__link__icon">
+                                settings
+                            </span>
+                            <span class="sidenav__link__label">Settings</span>
+                        </a>
+                    </li>
+                </ul>
+
+                @if (User.IsInRole(AppRoles.Developer))
+                {
+                    <ul class="sidenav__section">
+                        
+                        @if(environment.IsDevelopment()) {
+                            <li class="sidenav_item">
+                                <a href="http://localhost:6010/"  
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="sidenav__link group">
+                                    <span aria-hidden="true" class="material-symbols-outlined sidenav__link__icon">
+                                        mail
+                                    </span>
+                                    <span class="sidenav__link__label">Smtp4Dev</span>
+                                </a>
+                            </li>
+                        }
+                        
+                        <li class="sidenav_item">
+                            <a href="/swagger" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="sidenav__link group">
+                                <span aria-hidden="true" class="material-symbols-outlined sidenav__link__icon">
+                                    api
+                                </span>
+                                <span class="sidenav__link__label">Swagger</span>
+                            </a>
+                        </li>
+                        <li class="sidenav_item">
+                            <a href="/hangfire"  
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="sidenav__link group">
+                                <span aria-hidden="true" class="material-symbols-outlined sidenav__link__icon">
+                                    rebase
+                                </span>
+                                <span class="sidenav__link__label">Hangfire</span>
+                            </a>
+                        </li>
+                        <li class="sidenav_item">
+                            <a href="/.well-known/openid-configuration" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="sidenav__link group">
+                                <span aria-hidden="true" class="material-symbols-outlined sidenav__link__icon">
+                                    dataset
+                                </span>
+                                <span class="sidenav__link__label">openid Configuration</span>
+                            </a>
+                        </li>
+                    </ul>
+                }
+            </div>
+
+            <partial name="_SideNavCopyrightPartial" />
+
+        </aside>
+
+        <main class="p-4 md:ml-64 h-auto pt-20 text-black dark:text-white">
+            @RenderBody()
+        </main>
+    </div>
+
+    <partial name="_GlobalScriptsPartial" />
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

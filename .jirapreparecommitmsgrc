@@ -1,0 +1,4 @@
+{
+  "messagePattern": "[$J] $M",
+  "isConventionalCommit": true
+}

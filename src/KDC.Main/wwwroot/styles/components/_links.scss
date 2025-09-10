@@ -1,0 +1,14 @@
+@tailwind components;
+
+@layer components {
+
+  .link { 
+    @apply font-medium 
+    text-primary-600 
+    dark:text-primary-500
+    hover:underline 
+    hover:transition-all
+    ease-in-out
+    outline-primary-300
+  }
+}

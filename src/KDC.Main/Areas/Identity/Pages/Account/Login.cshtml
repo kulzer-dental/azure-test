@@ -1,0 +1,107 @@
+﻿@page
+@inject IViewLocalizer Localizer
+@model LoginModel
+
+@{
+    ViewData["Title"] = SharedLocalizer["Sign in"];
+}
+
+<h1 class="headline-1">
+    @AuthenticationLocalizer["Sign in to your account"]
+</h1>
+
+<div asp-validation-summary="ModelOnly" class="alert--danger" role="alert"></div>
+
+<form class="space-y-4 md:space-y-6" id="account" method="post">
+    <div class=input__container>
+        <label asp-for="Input.Email" class="input__label">@SharedLocalizer["Email"]</label>
+        <input asp-for="Input.Email" autocomplete="username" aria-required="true" placeholder="@SharedLocalizer["Sign in to your account"]"
+            class="input">
+
+        <span asp-validation-for="Input.Email"></span>
+    </div>
+    <div class="input__container">
+        <label asp-for="Input.Password" class="input__label">@SharedLocalizer["Password"]</label>
+        <input asp-for="Input.Password" autocomplete="current-password" aria-required="true" placeholder="••••••••"
+            class="input">
+        <span asp-validation-for="Input.Password"></span>
+    </div>
+    <div class="flex items-center justify-between">
+        <div class="checkbox">
+            <div class="checkbox__input__container">
+                <input asp-for="Input.RememberMe" aria-describedby="remember" class="checkbox__input">
+            </div>
+            <div class="checkbox__label__container">
+                <label asp-for="Input.RememberMe" class="checkbox__label">@SharedLocalizer["Remember me?"]</label>
+            </div>
+        </div>
+        <a id="forgot-password" asp-page="./ForgotPassword" class="link">@SharedLocalizer["Forgot password?"]</a>
+    </div>
+    <button type="submit" class="w-full btn-flat--primary">@AuthenticationLocalizer["Sign in"]</button>
+    <p class="text-muted">
+        @SharedLocalizer["Don't have an account yet?"] <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="link">@SharedLocalizer["Sign up"]</a>
+    </p>
+</form>
+
+@if ((Model.ExternalLogins?.Count ?? 0) > 0)
+{
+    <div class="inline-flex items-center justify-center w-full">
+        <hr class="w-full h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+        <span class="absolute px-3 font-medium -translate-x-1/2 left-1/2 bg-white dark:bg-gray-800 text-grey-500">or</span>
+    </div>
+
+    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+    <div>
+        <p>
+            @foreach (var provider in Model.ExternalLogins!)
+                {
+                    <button type="submit" name="provider" value="@provider.Name"
+                        title="Log in using your @provider.DisplayName account"
+                        class="w-full text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                        <span class="inline-flex items-center">
+                            @switch (provider.Name)
+                            {
+                                case "Google":
+                                    <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                        viewBox="0 0 18 19">
+                                        <path fill-rule="evenodd"
+                                            d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    break;
+                                case "Apple":
+                                    <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M17.537 12.625a4.421 4.421 0 0 0 2.684 4.047 10.96 10.96 0 0 1-1.384 2.845c-.834 1.218-1.7 2.432-3.062 2.457-1.34.025-1.77-.794-3.3-.794-1.531 0-2.01.769-3.275.82-1.316.049-2.317-1.318-3.158-2.532-1.72-2.484-3.032-7.017-1.27-10.077A4.9 4.9 0 0 1 8.91 6.884c1.292-.025 2.51.869 3.3.869.789 0 2.27-1.075 3.828-.917a4.67 4.67 0 0 1 3.66 1.984 4.524 4.524 0 0 0-2.16 3.805m-2.52-7.432A4.4 4.4 0 0 0 16.06 2a4.482 4.482 0 0 0-2.945 1.516 4.185 4.185 0 0 0-1.061 3.093 3.708 3.708 0 0 0 2.967-1.416Z" />
+                                    </svg>
+                                    break;
+                                case "Microsoft":
+                                    <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" fill="none" viewBox="0 0 24 24">
+                                        <path fill="currentColor" fill-rule="evenodd"
+                                            d="M3.005 12 3 6.408l6.8-.923v6.517H3.005ZM11 5.32 19.997 4v8H11V5.32ZM20.067 13l-.069 8-9.065-1.275L11 13h9.067ZM9.8 19.58l-6.795-.931V13H9.8v6.58Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    break;
+                                default:
+                                    <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 14v3m-3-6V7a3 3 0 1 1 6 0v4m-8 0h10a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1Z" />
+                                    </svg>
+                                    break;
+                            }
+                            <span>@AuthenticationLocalizer["Sign in with {0}", @provider!.DisplayName!] </span>
+                        </span>
+                    </button>
+
+                }
+            </p>
+        </div>
+    </form>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

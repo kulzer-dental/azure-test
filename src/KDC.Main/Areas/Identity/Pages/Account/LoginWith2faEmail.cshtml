@@ -1,0 +1,42 @@
+﻿@page
+@model LoginWith2faEmailModel
+@{
+    ViewData["Title"] = AuthenticationLocalizer["Two-factor authentication"];
+}
+
+<h1 class="headline-1">@ViewData["Title"]</h1>
+<p>@AuthenticationLocalizer["We've sent you an email with your two factor code. Please check your inbox and enter the code below."]</p>
+
+<form method="post" class="space-y-4 md:space-y-6" asp-route-returnUrl="@Model.ReturnUrl">
+    <input asp-for="RememberMe" type="hidden" />
+    <div asp-validation-summary="ModelOnly" class="alert--danger" role="alert"></div>
+
+    <div class=input__container>
+        <label asp-for="Input.TwoFactorCode" class="input__label">@AuthenticationLocalizer["Code"]</label>
+        <input asp-for="Input.TwoFactorCode"  autocomplete="off" aria-required="true"
+            class="input">
+
+        <span asp-validation-for="Input.TwoFactorCode"></span>
+    </div>
+
+    <div class="checkbox">
+        <div class="checkbox__input__container">
+            <input asp-for="Input.RememberMachine" aria-describedby="remember" class="checkbox__input">
+        </div>
+        <div class="checkbox__label__container">
+            <label asp-for="Input.RememberMachine" class="checkbox__label">
+                @AuthenticationLocalizer["Remember this machine"]
+            </label>
+        </div>
+    </div>
+
+    <div>
+        <button type="submit" class="w-full btn-flat--primary">@AuthenticationLocalizer["Sign in"]</button>
+    </div>
+</form>
+
+<p>
+    @AuthenticationLocalizer["Don't have access to your email account?"]
+    &nbsp;
+    <a id="recovery-code-login" asp-page="./LoginWithRecoveryCode" asp-route-returnUrl="@Model.ReturnUrl" class="link">@Localizer["You can sign in with a recovery code."]</a>
+</p>

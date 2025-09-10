@@ -1,0 +1,21 @@
+﻿@page
+@model Disable2faModel
+@{
+    ViewData["Title"] = AuthenticationLocalizer["Disable two-factor authentication (2FA)"];
+}
+
+<h3 class="headline-1">@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<p class="mt-8">
+    @AuthenticationLocalizer["By confirming to disable 2-factor authentication, you will no longer be prompted to enter your 2-factor code at sign in. Doing so makes your account more vulnerable for phishing attacks."]
+</p>
+
+<p class="mt-8"><strong>@AuthenticationLocalizer["Do you really want to disable 2FA?"]</strong></p>
+
+<div class="mt-8">
+    <form method="post">
+        <a class="btn-flat--primary" asp-page="./TwoFactorAuthentication">@AuthenticationLocalizer["No, keep activated"]</a>
+        <button class="btn-flat--danger" type="submit">@AuthenticationLocalizer["Yes, disable 2FA"]</button>
+    </form>
+</div>
