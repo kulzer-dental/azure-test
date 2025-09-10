@@ -12,13 +12,13 @@ COPY package*.json ./
 RUN npm install || true
 
 # Copy csproj and restore as distinct layers
-COPY KDC.Main.csproj ./  
+COPY src/KDC.Main/KDC.Main.csproj ./  
 RUN dotnet restore
 
-# Copy all source files
-COPY . ./
+# Copy all source files from the KDC.Main directory
+COPY src/KDC.Main/ ./
 
-RUN dotnet publish -c Release -o out
+RUN dotnet publish KDC.Main.csproj -c Debug -o out
 
 # Use the official .NET 8 ASP.NET runtime image for runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
